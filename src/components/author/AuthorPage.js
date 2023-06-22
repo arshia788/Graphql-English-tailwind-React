@@ -1,15 +1,17 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
 
 import { useParams } from 'react-router-dom';
+import { GET_AUTHORS } from '../graphql/queries';
 
 const AuthorPage = () => {
 
-    const id= useParams()
-    console.log(id.slug);
+    
+
     
     return (
         <div>
-            {id}
+
         </div>
     );
 };

@@ -13,7 +13,7 @@ const CartEl = ({ data }) => {
         md:mr-1
         shadow-md
         shadow-gray-400
-        rounded-lg mb-12 py-5
+        rounded-sm mb-12 py-5
         '>
 
             <div className='flex items-center mb-4 px-1'>

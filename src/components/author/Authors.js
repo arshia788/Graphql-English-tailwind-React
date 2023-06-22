@@ -17,6 +17,8 @@ const Authors = () => {
     return (
         <div className='shadow-md
         mt-4
+        rounded-sm
+        w-full
         shadow-gray-400'>
             {
                 data.authors.map((item, index) => {

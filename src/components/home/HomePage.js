@@ -8,13 +8,13 @@ const HomePage = () => {
     return (
         <div className='grid grid-cols-12 p-20'>
 
-            <div className='xs:col-span-12 sm:col-span-10'>
-                <h3 className='ml-8 '>Blogs</h3>
+            <div className='xs:col-span-12 md:col-span-10'>
+                <h3 className='xs:mx-0 xs:my-4 sm:my-2 sm:mx-0 text-2xl ml-8 '>Blogs</h3>
                 <Blogs />
             </div>
 
-            <div className='xs:col-span-12 sm:col-span-2'>
-                <h3>Authors</h3>
+            <div className='xs:col-span-12 md:col-span-2'>
+                <h3  className='xs:mx-0 xs:my-4 text-2xl'>Authors</h3>
                 <Authors />
             </div>
 

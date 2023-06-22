@@ -6,8 +6,9 @@ const Footer = () => {
     return (
         <footer 
         className=' text-gray-200 text-xl
-         bg-pink-600 py-2
-         flex justify-center items-center'>
+         bg-pink-600 py-2 px-0
+         flex justify-center items-center
+         '>
             <p className='mr-5 '>this project is by Graphql</p>
             
             <img src={pic} 
