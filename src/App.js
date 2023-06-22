@@ -1,26 +1,16 @@
 import React from 'react';
-import Header from './components/Header';
 import { gql, useQuery } from '@apollo/client';
 
-
-const GET = gql`
-query{
-  authors{
-    name
-  }
-}
-`
+import HomePage from './components/home/HomePage';
+import Layout from './components/layout'
 
 const App = () => {
 
-  const {data} = useQuery(GET)
-  console.log(data);
 
   return (
-    <div>
-      <Header />
-
-    </div>
+    <Layout>
+      <HomePage />
+    </Layout>
   );
 };
 
