@@ -7,7 +7,7 @@ const CartEl = ({ data }) => {
 
     return (
         <div className='
-        xs:w-full 
+        xs:w-screen 
         sm:w-2/5
         md:w-3/12
         md:mr-1
