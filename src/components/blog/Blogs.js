@@ -12,7 +12,6 @@ const Blogs = () => {
 
     const itemA = data&& data.posts.filter(item => item.title !== 'best-laptop')
 
-    console.log(itemA);
 
 
     if (loading) return <h1>loading..</h1>
@@ -20,7 +19,7 @@ const Blogs = () => {
     if (errors) return <h3>Ooops...</h3>
 
     return (
-        <div className='inline-flex flex-wrap gap-1 justify-between items-center py-4 px-1 '>
+        <div className='flex flex-wrap justify-between items-center py-4 px-8 '>
             {
                 itemA.map(item => <CartEl key={item.id} data={item} />)
             }

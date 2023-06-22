@@ -19,4 +19,18 @@ query{
 }
 `
 
-export {GET};
+
+const GET_AUTHORS= gql`
+ query {
+  authors {
+    avatar {
+      url
+    }
+    name
+    id
+    slug
+  }
+}
+`
+
+export {GET, GET_AUTHORS};

@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'
 
 const CartEl = ({ data }) => {
 
-    console.log(data.author);
 
     return (
         <div className='
-        xs:w-screen 
-        md:w-1/2 
-        lg:w-3/12
-         shadow-md
-        shadow-gray-300
-         rounded-lg mb-12 py-5
+        xs:w-full 
+        sm:w-2/5
+        md:w-3/12
+        md:mr-1
+        shadow-md
+        shadow-gray-400
+        rounded-lg mb-12 py-5
         '>
 
             <div className='flex items-center mb-4 px-1'>
@@ -28,7 +28,7 @@ const CartEl = ({ data }) => {
             <img src={data.coverPhoto.url} alt={data.slug}
                 className='w-full h-40 mb-4'
             />
-            <h3 className='mb-4 ml-1 text-xl font-semibold'>{data.title}</h3>
+            <h4 className='mb-4 ml-1 lg:text-xl font-semibold'>{data.title}</h4>
 
             <hr
                 className='h-0.5 bg-gray-200 mb-2 w-11/12 m-auto'
