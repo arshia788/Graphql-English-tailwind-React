@@ -55,7 +55,7 @@ const BlogPage = () => {
                 />
 
                 {/* this is for the name and field */}
-                <div className='flex flex-col text-xl'>
+                <div className='flex flex-col text-xl mb-4'>
                     <p>
                         {data.post.author.name}
                     </p>
@@ -65,12 +65,17 @@ const BlogPage = () => {
                 </div>
             </div>
 
-            <div>
+
+            <div 
+            className='border-2 w-10/12 mx-auto '
+                dangerouslySetInnerHTML={{ __html: data.post.content.html }}
+            >
+
 
             </div>
 
 
-        </div>
+        </div >
     );
 };
 
