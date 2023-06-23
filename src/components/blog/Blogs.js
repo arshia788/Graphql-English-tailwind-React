@@ -21,7 +21,7 @@ const Blogs = () => {
     return (
         <div className='flex flex-wrap justify-between items-center xs:p-0 sm:py-4 sm:px-2 box-border '>
             {
-                itemA.map(item => <CartEl key={item.id} data={item} />)
+                itemA.map(item => <CartEl key={item.id} {...item} />)
             }
         </div>
     )

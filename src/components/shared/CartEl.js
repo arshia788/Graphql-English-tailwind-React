@@ -2,9 +2,11 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 
-const CartEl = ({ data }) => {
+const CartEl = ({ title, slug, coverPhoto, author }) => {
 
 
+    console.log(coverPhoto);
+    
     return (
         <div className='
         xs:w-screen 
@@ -13,22 +15,25 @@ const CartEl = ({ data }) => {
         md:mr-1
         shadow-md
         shadow-gray-400
-        rounded-sm mb-12 py-5
+        rounded-md mb-12 py-5
         '>
 
-            <div className='flex items-center mb-4 px-1'>
-                <img
-                    className='rounded-full w-9 h-9 mr-4'
-                    src={data.author.avatar.url}
-                />
-                <h5>{data.author.name}</h5>
+            {
+                author &&
+                <div className='flex items-center mb-4 px-1'>
+                    <img
+                        className='rounded-full w-9 h-9 mr-4'
+                        src={author.avatar.url}
+                    />
+                    <h5>{author.name}</h5>
+                </div>
+            }
 
-            </div>
 
-            <img src={data.coverPhoto.url} alt={data.slug}
+            <img src={coverPhoto.url} alt={slug}
                 className='w-full h-40 mb-4'
             />
-            <h4 className='mb-4 ml-1 lg:text-xl font-semibold'>{data.title}</h4>
+            <h4 className='mb-4 ml-1 lg:text-xl font-semibold'>{title}</h4>
 
             <hr
                 className='h-0.5 bg-gray-200 mb-2 w-11/12 m-auto'
