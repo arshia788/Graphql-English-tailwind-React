@@ -30,6 +30,9 @@ const GET_AUTHORS= gql`
     }
     slug
     id
+    description {
+      html
+    }
   }
 }
 `

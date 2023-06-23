@@ -34,7 +34,7 @@ const App = () => {
   return (
     <Layout filterBlogs={filterBlogs}>
       <Routes>
-        <Route path='/blogs' element={<BlogPage />} />
+        <Route path='/blogs/:slug' element={<BlogPage />} />
         <Route path='/authors' element={<AuthorPage />} />
         <Route path='/' element={<HomePage 
         allBlogs={allBlogs}

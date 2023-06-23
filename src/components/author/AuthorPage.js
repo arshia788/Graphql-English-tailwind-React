@@ -5,7 +5,7 @@ import { GET_AUTHORS } from '../graphql/queries';
 
 import CartEl from '../shared/CartEl'
 
-import sanatizeHtml from 'sanitize-html'
+import sanatizeHtml from 'sanitize-html';
 import Loader from '../shared/Loader';
 
 const AuthorPage = () => {
@@ -22,6 +22,7 @@ const AuthorPage = () => {
 
             <div className='grid grid-cols-12 p-2 xs:px-4'>
                 {data.authors.map(item => {
+                    console.log(item);
                     return (
                         <div key={item.id}
                             className='col 
@@ -52,7 +53,6 @@ const AuthorPage = () => {
                                 className='hover:text-white  text-lg'
                             >
                                 {item.field}</p>
-
                         </div>
                     )
                 })}
