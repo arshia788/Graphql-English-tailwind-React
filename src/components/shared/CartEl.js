@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 const CartEl = ({ title, slug, coverPhoto, author }) => {
 
 
-    console.log(coverPhoto);
 
     return (
         <div className='

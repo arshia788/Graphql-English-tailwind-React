@@ -3,10 +3,10 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-const index = ({children}) => {
+const index = ({children, filterBlogs}) => {
     return (
         <div>
-            <Header />
+            <Header filterBlogs={filterBlogs}/>
                 {children}
             <Footer />
         </div>

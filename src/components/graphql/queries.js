@@ -23,12 +23,13 @@ query{
 const GET_AUTHORS= gql`
  query {
   authors {
+    name
+    field
     avatar {
       url
     }
-    name
-    id
     slug
+    id
   }
 }
 `

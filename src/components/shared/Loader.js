@@ -4,11 +4,12 @@ import React from 'react';
 
 const Loader = () => {
     return (
+        // ? you gave this so that the footer stay down
         <div className='w-full h-screen flex justify-center pt-20'>
             <LineWave
                 height="300"
                 width="300"
-                color="#4fa94d"
+                color="#FF78C4"
                 ariaLabel="line-wave"
                 wrapperStyle={{}}
                 wrapperClass=""

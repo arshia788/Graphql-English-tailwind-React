@@ -5,7 +5,7 @@ import { GET_AUTHORS } from '../graphql/queries';
 import { Link } from 'react-router-dom';
 import Loader from '../shared/Loader';
 
-const Authors = () => {
+const Authors = ({ filterBlogs }) => {
 
     const { loading, data, error } = useQuery(GET_AUTHORS);
 
@@ -17,30 +17,44 @@ const Authors = () => {
 
     return (
         <div className='shadow-md
-        mt-4
-        rounded-sm
+        rounded-md
         w-full
-        shadow-gray-400'>
+        shadow-gray-400
+        overflow-hidden
+        '>
+            <button className='w-full border-none outline-none
+            transition-all bg-white 
+            duration-300 focus:bg-pink-600 focus:text-white
+            cursor-pointer text-center text-2xl'
+                onClick={() => filterBlogs('all')}
+            >
+                <h3>All</h3>
+                <hr />
+            </button>
             {
                 data.authors.map((item, index) => {
                     return (
                         <React.Fragment key={item.id}>
-                            <Link to={`/authors/${item.slug}`}>
-                                <div className='mb-4 p-2 flex items-center'>
+                            
+                                <button className='w-full border-none outline-none
+                                transition-all bg-white  duration-300 focus:bg-blue-600 focus:text-white
+                                mb-4 py-1.5 px-2 flex items-center
+                                '
+                                onClick={() => filterBlogs(item.slug)}
+                                >
                                     <img
                                         src={item.avatar.url}
                                         alt={item.slug}
                                         className='w-10 h-10 rounded-full mr-4'
                                     />
 
-                                    <p>{item.name}</p>
-                                </div>
+                                    <p className='text-lg'>{item.name}</p>
+                                </button>
                                 {
                                     index !== item.length - 1 && <hr
                                         className='bg-gray-200 h-0.5 w-1/2 m-auto'
                                     />
                                 }
-                            </Link>
                         </React.Fragment>
                     )
                 })
