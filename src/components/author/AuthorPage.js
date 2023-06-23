@@ -39,16 +39,18 @@ const AuthorPage = () => {
                 </div>
             </div>
             <div className=' mt-8'>
-                <p className='text-center text-lg'
+                <p className='text-center text-lg xs:px-4'
                     dangerouslySetInnerHTML={{ __html: sanatizeHtml(data.author.description.html) }}
                 >
                 </p>
 
             </div>
 
-            <p className='mt-12 pl-8 text-2xl font-bold  '>blogs of {data.author.name}</p>
+            <p className='xs:px-4   mt-12 pl-8 text-2xl font-bold  '>blogs of {data.author.name}</p>
 
-            <div className=' flex-wrap mt-8 pl-8 flex justify-between items-center'>
+            <div className=' spacing-13 
+            xs:px-4
+            flex-wrap mt-8 pl-8 flex justify-between items-center'>
 
                 {itemA.map(item => {
                     return (

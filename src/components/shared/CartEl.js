@@ -6,7 +6,7 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
 
 
     console.log(coverPhoto);
-    
+
     return (
         <div className='
         xs:w-screen 
@@ -15,7 +15,7 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
         md:mr-1
         shadow-md
         shadow-gray-400
-        rounded-md mb-12 py-5
+        rounded-md mb-12 overflow-hidden
         '>
 
             {
@@ -38,16 +38,19 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
             <hr
                 className='h-0.5 bg-gray-200 mb-2 w-11/12 m-auto'
             />
-            <Link
-                // to='/'
-                className='w-8/12  text-center'>
+            <div className='text-center mb-2'>
 
-                <button
-                    className='w-full rounded-full
-            text-white bg-blue-700 border
-            transition-all duration-150'
-                >Details</button>
-            </Link>
+                <Link
+                    // to='/'
+                    className=''>
+
+                    <button
+                        className='w-6/12 rounded-lg py-0.5
+                    text-white bg-blue-700
+                    '
+                    >Details</button>
+                </Link>
+            </div>
 
         </div>
     );
