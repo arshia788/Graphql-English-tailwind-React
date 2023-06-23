@@ -7,6 +7,7 @@ import { GET_AUTHOR_INFO } from '../graphql/queries';
 import CartEl from '../shared/CartEl'
 
 import sanatizeHtml from 'sanitize-html'
+import Loader from '../shared/Loader';
 
 const AuthorPage = () => {
 
@@ -16,7 +17,7 @@ const AuthorPage = () => {
         variables: { slug }
     })
 
-    if (loading) return <h1>loading...</h1>
+    if (loading) return <h1><Loader /></h1>
 
     if (error) return <h1>Ooops..</h1>
 
@@ -46,15 +47,15 @@ const AuthorPage = () => {
 
             </div>
 
-            <p className='xs:px-4   mt-12 pl-8 text-2xl font-bold  '>blogs of {data.author.name}</p>
+            <p className='xs:px-4 mt-16 pl-8 text-2xl font-bold '>blogs of <span className='text-pink-600'>{data.author.name}</span> </p>
 
-            <div className=' spacing-13 
+            <div className='spacing-13 
             xs:px-4
             flex-wrap mt-8 pl-8 flex justify-between items-center'>
 
                 {itemA.map(item => {
                     return (
-                        <div className='xs:w-full'>
+                        <div className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4 xs:w-full sm:w-auto'>
 
                             <CartEl title={item.title}
                                 slug={item.slug}

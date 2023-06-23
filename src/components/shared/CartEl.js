@@ -36,13 +36,14 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
             />
             <div className='text-center mb-2'>
 
-                <Link
-                    // to='/'
+                <Link to={`/blogs/${slug}`}
+                    
                     className=''>
 
                     <button
                         className='w-6/12 rounded-lg py-0.5
                     text-white bg-blue-700
+                    focus:bg-pink-600
                     '
                     >Details</button>
                 </Link>

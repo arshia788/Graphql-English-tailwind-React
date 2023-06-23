@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client'
 import CartEl from '../shared/CartEl';
 
 import { GET } from '../graphql/queries';
+import Loader from '../shared/Loader';
 
 const Blogs = () => {
 
@@ -14,12 +15,13 @@ const Blogs = () => {
 
 
 
-    if (loading) return <h1>loading..</h1>
+    if (loading) return <h1><Loader /></h1>
 
     if (errors) return <h3>Ooops...</h3>
 
     return (
-        <div className='grid grid-cols-12 flex-wrap justify-between items-center xs:p-0 sm:py-4 sm:px-2 box-border '>
+        <div className='grid grid-cols-12 flex-wrap justify-between items-center 
+        xs:p-0 sm:py-4 sm:px-2 box-border '>
             {
                 itemA.map(item => {
                     return (
