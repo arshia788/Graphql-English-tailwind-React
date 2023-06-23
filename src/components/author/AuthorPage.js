@@ -54,11 +54,14 @@ const AuthorPage = () => {
 
                 {itemA.map(item => {
                     return (
-                        <CartEl title={item.title}
-                            slug={item.slug}
-                            coverPhoto={item.coverPhoto}
+                        <div className='xs:w-full'>
 
-                        />
+                            <CartEl title={item.title}
+                                slug={item.slug}
+                                coverPhoto={item.coverPhoto}
+
+                            />
+                        </div>
                     )
                 })}
             </div>

@@ -10,7 +10,7 @@ const Blogs = () => {
 
     const { loading, data, errors } = useQuery(GET)
 
-    const itemA = data&& data.posts.filter(item => item.title !== 'best-laptop')
+    const itemA = data && data.posts.filter(item => item.title !== 'best-laptop')
 
 
 
@@ -19,9 +19,16 @@ const Blogs = () => {
     if (errors) return <h3>Ooops...</h3>
 
     return (
-        <div className='flex  flex-wrap justify-between items-center xs:p-0 sm:py-4 sm:px-2 box-border '>
+        <div className='grid grid-cols-12 flex-wrap justify-between items-center xs:p-0 sm:py-4 sm:px-2 box-border '>
             {
-                itemA.map(item => <CartEl key={item.id} {...item} />)
+                itemA.map(item => {
+                    return (
+                        <div key={item.id} className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4'>
+                            <CartEl key={item.id} {...item} />
+
+                        </div>
+                    )
+                })
             }
         </div>
     )

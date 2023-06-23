@@ -9,10 +9,6 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
 
     return (
         <div className='
-        xs:w-screen 
-        sm:w-2/5
-        md:w-3/12
-        md:mr-1
         shadow-md
         shadow-gray-400
         rounded-md mb-12 overflow-hidden
