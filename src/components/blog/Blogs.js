@@ -11,7 +11,6 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
     const { loading, data, errors } = useQuery(allBlogs, {
         variables:{slug:slugItem}
     })
-    console.log(data);
 
 
     if (!check) {
@@ -39,7 +38,6 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
 
     if(check){
         const itemA = data && data.posts.filter(item => item.title !== 'best-laptop')
-        console.log(itemA);
 
         if (loading) return <h1><Loader /></h1>
         if (errors) return <h3>Ooops...</h3>
