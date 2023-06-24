@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { SEND_COMMENT } from '../graphql/mutation';
@@ -11,10 +11,13 @@ import { BsFillPatchExclamationFill } from "react-icons/bs";
 const CommentForm = ({ slug }) => {
 
     const [check, setCheck] = useState(false);
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [text, setText] = useState('');
     const [pressed, setPressed] = useState(false);
+
+
     const [focus, setFocus] = useState({});
     console.log(focus);
 
@@ -37,17 +40,23 @@ const CommentForm = ({ slug }) => {
     }
 
     const focusHandler = (e) => {
-        setFocus({ ...focus, [e.target.value]: true })
+        setFocus({ ...focus, [e.target.name]: true })
     }
 
+    useEffect(()=>{
+
+        if (data && pressed) {
+            toast.success('the comment has sent please wait to be accepted by the admin', {
+                position: "top-center"
+            })
+            setPressed(false);
+        }
+
+    },[data && pressed])
 
 
-    if (data && pressed) {
-        toast.success('the comment has sent please wait to be accepted by the admin', {
-            position: "top-center"
-        })
-        setPressed(false);
-    }
+
+    
 
     return (
         <div className=' grid-cols-12 rounded-md py-4 my-4
@@ -61,29 +70,26 @@ const CommentForm = ({ slug }) => {
                 >send your comment</p>
             </div>
 
-            <div className='col-span-12 flex flex-col p-4 m-4'>
+            <div className='col-span-12 flex flex-col p-4 m-4 relative'>
 
-                <div className={`border p-2 rounded-sm border-gray-500
-                    outline-none focus:border-blue-700
-                    placeholder:text-gray-600 placeholder:opacity-60
-                    ${check ? 'border-red-700' : 'border-gray-500'}
-                     flex items-center`}>
+                <input
+                className={`border p-2 rounded-sm border-gray-500
+                
+                outline-none focus:border-blue-700
+                placeholder:text-gray-600 placeholder:opacity-60
+                ${check ? 'border-red-700' : 'border-gray-500'}
+                `}
+                placeholder='name'
+                value={name}
+                name='name'
+                type='text'
+                onChange={(e) => setName(e.target.value)}
+                onFocus={focusHandler} />
 
-                    <input
-                        className='w-full outline-none border-none'
-                        placeholder='name'
-                        type='text'
-                        value={name}
-                        name='name'
-                        onChange={(e) => setName(e.target.value)}
-                        onFocus={focusHandler}
-                    />
+                {focus.name && <BsFillPatchExclamationFill 
+                className='absolute right-6 top-6 text-red-600 text-xl'
+                />}
 
-                    {
-                        check ?<p>hello </p>:<span>asd</span>
-                    }
-
-                </div>
 
 
             </div>
@@ -92,10 +98,10 @@ const CommentForm = ({ slug }) => {
 
                 <input
                     className={`border p-2 rounded-sm border-gray-500
-            outline-none focus:border-blue-700
-            placeholder:text-gray-600 placeholder:opacity-60
-            ${check ? 'border-red-700' : 'border-gray-500'}
-            `}
+                    outline-none focus:border-blue-700
+                    placeholder:text-gray-600 placeholder:opacity-60
+                    ${check ? 'border-red-700' : 'border-gray-500'}
+                    `}
                     placeholder='email'
                     value={email}
                     name='email'

@@ -7,7 +7,6 @@ import { FaCommentAlt } from "react-icons/fa";
 
 const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
 
-    console.log(comments);
 
 
     return (
