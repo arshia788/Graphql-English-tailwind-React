@@ -12,22 +12,29 @@ const CommentForm = ({ slug }) => {
 
     const [check, setCheck] = useState(false);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [text, setText] = useState('');
+    const [info, setInfo]=useState({
+        nameInfo:'',
+        emailInfo:'',
+        text:''
+    })
     const [pressed, setPressed] = useState(false);
-
-
     const [focus, setFocus] = useState({});
+    
     console.log(focus);
+    
+    
+    const changeHandler=(event)=>{
+        setInfo({...info, [event.target.name]:event.target.value})
+        console.log(info);
+    }
 
 
     const [sendComment, { loading, data, erros }] = useMutation(SEND_COMMENT, {
-        variables: { name, email, text, slug }
+        variables: { name:info.nameInfo, email:info.emailInfo, text:info.text , slug }
     })
 
     const snedHandler = () => {
-        if (name && email && text) {
+        if (info.nameInfo && info.emailInfo && info.text) {
             sendComment()
             setPressed(true)
             setCheck(false)
@@ -42,19 +49,14 @@ const CommentForm = ({ slug }) => {
     const focusHandler = (e) => {
         setFocus({ ...focus, [e.target.name]: true })
     }
-
-    useEffect(()=>{
-
-        if (data && pressed) {
-            toast.success('the comment has sent please wait to be accepted by the admin', {
-                position: "top-center"
-            })
-            setPressed(false);
-        }
-
-    },[data && pressed])
-
-
+    
+    
+    if (data && pressed) {
+        toast.success('the comment has sent please wait to be accepted by the admin', {
+            position: "top-center"
+        })
+        setPressed(false);
+    }
 
     
 
@@ -79,11 +81,12 @@ const CommentForm = ({ slug }) => {
                 placeholder:text-gray-600 placeholder:opacity-60
                 ${check ? 'border-red-700' : 'border-gray-500'}
                 `}
+
                 placeholder='name'
-                value={name}
-                name='name'
+                value={info.nameInfo}
+                name='nameInfo'
                 type='text'
-                onChange={(e) => setName(e.target.value)}
+                onChange={changeHandler}
                 onFocus={focusHandler} />
 
                 {focus.name && <BsFillPatchExclamationFill 
@@ -103,10 +106,10 @@ const CommentForm = ({ slug }) => {
                     ${check ? 'border-red-700' : 'border-gray-500'}
                     `}
                     placeholder='email'
-                    value={email}
-                    name='email'
+                    value={info.emailInfo}
+                    name='emailInfo'
                     type='email'
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={changeHandler}
                     onFocus={focusHandler}
                 />
 
@@ -122,9 +125,9 @@ const CommentForm = ({ slug }) => {
                     ${check ? 'border-red-700' : 'border-gray-500'}
                     `}
                     placeholder='comment'
-                    value={text}
+                    value={info.text}
                     type='text'
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={changeHandler}
                     name='text'
                     onFocus={focusHandler}
                 />
