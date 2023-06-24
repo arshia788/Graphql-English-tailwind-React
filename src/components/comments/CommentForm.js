@@ -8,38 +8,48 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaCheckCircle } from "react-icons/fa";
 import { BsFillPatchExclamationFill } from "react-icons/bs";
 
+// func
+import { validate } from '../helper/validation';
+
 const CommentForm = ({ slug }) => {
 
-    const [check, setCheck] = useState(false);
 
-    const [info, setInfo]=useState({
-        nameInfo:'',
-        emailInfo:'',
-        text:''
+    const [info, setInfo] = useState({
+        nameInfo: '',
+        emailInfo: '',
+        text: '',
+        check: false
     })
+
+    const [errors, setErrors] = useState({});
     const [pressed, setPressed] = useState(false);
     const [focus, setFocus] = useState({});
-    
-    console.log(focus);
-    
-    
-    const changeHandler=(event)=>{
-        setInfo({...info, [event.target.name]:event.target.value})
-        console.log(info);
+
+    useEffect(() => {
+        setErrors(validate(info))
+    }, [info, focus])
+
+
+    const changeHandler = (event) => {
+        setInfo({ ...info, [event.target.name]: event.target.value })
     }
 
 
     const [sendComment, { loading, data, erros }] = useMutation(SEND_COMMENT, {
-        variables: { name:info.nameInfo, email:info.emailInfo, text:info.text , slug }
+        variables: { name: info.nameInfo, email: info.emailInfo, text: info.text, slug }
     })
 
     const snedHandler = () => {
         if (info.nameInfo && info.emailInfo && info.text) {
             sendComment()
             setPressed(true)
-            setCheck(false)
-        } else {
-            setCheck(true)
+        }
+        else {
+            setFocus({
+                nameInfo: true,
+                emailInfo: true,
+                text: true,
+            })
             toast.error("Fill All The Fields", {
                 position: "top-center",
             })
@@ -49,8 +59,8 @@ const CommentForm = ({ slug }) => {
     const focusHandler = (e) => {
         setFocus({ ...focus, [e.target.name]: true })
     }
-    
-    
+
+
     if (data && pressed) {
         toast.success('the comment has sent please wait to be accepted by the admin', {
             position: "top-center"
@@ -58,10 +68,24 @@ const CommentForm = ({ slug }) => {
         setPressed(false);
     }
 
-    
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (!Object.keys(errors).length) {
+            setInfo({
+                ...info,
+                check: true
+            })
+        }
+    }
+
+
+
+
 
     return (
-        <div className=' grid-cols-12 rounded-md py-4 my-4
+        <form
+            onSubmit={submitHandler}
+            className=' grid-cols-12 rounded-md py-4 my-4
         shadow-md
         shadow-gray-400
         '
@@ -75,36 +99,48 @@ const CommentForm = ({ slug }) => {
             <div className='col-span-12 flex flex-col p-4 m-4 relative'>
 
                 <input
-                className={`border p-2 rounded-sm border-gray-500
-                
+                    className={`border-2 p-2 rounded-sm border-gray-500
                 outline-none focus:border-blue-700
                 placeholder:text-gray-600 placeholder:opacity-60
-                ${check ? 'border-red-700' : 'border-gray-500'}
+                ${focus.nameInfo && errors.name ? 'border-red-700' : 'border-gray-500'}
+                ${info.check && 'border-green-600'}
                 `}
 
-                placeholder='name'
-                value={info.nameInfo}
-                name='nameInfo'
-                type='text'
-                onChange={changeHandler}
-                onFocus={focusHandler} />
+                    placeholder='name'
+                    value={info.nameInfo}
+                    name='nameInfo'
+                    type='text'
+                    onChange={changeHandler}
+                    onFocus={focusHandler} />
 
-                {focus.name && <BsFillPatchExclamationFill 
-                className='absolute right-6 top-6 text-red-600 text-xl'
-                />}
+
+                {
+                    focus.nameInfo && errors.name ?
+                        <BsFillPatchExclamationFill
+                            className='absolute right-6 top-6 text-red-600 text-xl'
+                        />
+                        :
+                        <FaCheckCircle
+                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+
+                        />
+                }
 
 
 
             </div>
 
-            <div className='col-span-12 flex flex-col p-4 m-4'>
+            <div className='col-span-12 flex flex-col p-4 m-4 relative'>
 
                 <input
-                    className={`border p-2 rounded-sm border-gray-500
+                    className={`border-2 p-2 rounded-sm border-gray-500
                     outline-none focus:border-blue-700
-                    placeholder:text-gray-600 placeholder:opacity-60
-                    ${check ? 'border-red-700' : 'border-gray-500'}
-                    `}
+                    placeholder:text-gray-600 placeholder:opacity-60 relative
+                    ${focus.emailInfo && errors.email ? 'border-red-700' : 'border-gray-500'}
+                    ${info.check && 'border-green-600'}
+                    `
+                    }
+                    
                     placeholder='email'
                     value={info.emailInfo}
                     name='emailInfo'
@@ -113,16 +149,29 @@ const CommentForm = ({ slug }) => {
                     onFocus={focusHandler}
                 />
 
+                {
+                    focus.emailInfo && errors.email ?
+                        <BsFillPatchExclamationFill
+                            className='absolute right-6 top-6 text-red-600 text-xl'
+                        />
+                        :
+                        <FaCheckCircle
+                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+
+                        />
+                }
+
             </div>
 
-            <div className='col-span-12 flex flex-col p-4 m-4'>
+            <div className='col-span-12 flex flex-col p-4 m-4 relative'>
 
                 <input
-                    className={`border p-2 rounded-sm border-gray-500
+                    className={`border-2 p-2 rounded-sm border-gray-500
                     outline-none 
                     placeholder:text-gray-600 placeholder:opacity-60
-                    focus:border-blue-700
-                    ${check ? 'border-red-700' : 'border-gray-500'}
+                    focus:border-blue-700 relative
+                    ${focus.text && errors.text ? 'border-red-700' : 'border-gray-500'}
+                    ${info.check && 'border-green-600'}
                     `}
                     placeholder='comment'
                     value={info.text}
@@ -131,6 +180,18 @@ const CommentForm = ({ slug }) => {
                     name='text'
                     onFocus={focusHandler}
                 />
+
+                {
+                    focus.text && errors.text ?
+                        <BsFillPatchExclamationFill
+                            className='absolute right-6 top-6 text-red-600 text-xl'
+                        />
+                        :
+                        <FaCheckCircle
+                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+
+                        />
+                }
 
             </div>
 
@@ -141,12 +202,13 @@ const CommentForm = ({ slug }) => {
                 :
                 <button
                     onClick={snedHandler}
+                    type='submit'
                     className='bg-blue-700 text-white py-1 px-2 rounded-sm ml-8 text-lg  border-none outline-none'
                 >submit</button>
             }
 
             <ToastContainer />
-        </div>
+        </form>
     );
 };
 

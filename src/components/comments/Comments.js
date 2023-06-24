@@ -23,7 +23,6 @@ const Comments = ({ slug }) => {
 
             <div className='col-span-12 my-4 py-1 border rounded '>
                 {data.comments.map(item => {    
-                    console.log(item);
 
                     return (
                         <div key={item.id} className='flex flex-col rounded-sm p-1 mb-3 

@@ -9,21 +9,19 @@ const Header = ({ filterBlogs }) => {
         <nav className='bg-blue-700 flex justify-between items-center py-2 px-20 text-white'>
             <div className='flex justify-between items-center'>
                 <Link to='/'
-                    onClick={()=> filterBlogs('all')} 
+                    onClick={() => filterBlogs('all')}
                 >
-                <h1 
-                    className='text-4xl mr-7 mb-2 font-semibold'>weblog</h1>
-                </Link> 
-                    
-                <ul className='flex '>
-                    <Link><li className='mx-2 text-xl'>Blogs</li></Link>
-                    <Link to='/authors'><li className='mx-2 text-xl'>Authors</li></Link>
-                </ul>
+                    <h1
+                        className='text-4xl mr-7 mb-2 font-semibold'>weblog</h1>
+                </Link>
+
             </div>
 
-            <FaHome
-                className='text-2xl'
-            />
+            <ul className='flex '>
+                <Link><li className='mx-2 text-xl'>Blogs</li></Link>
+                <Link to='/authors'><li className='mx-2 text-xl'>Authors</li></Link>
+            </ul>
+
 
         </nav >
     );
