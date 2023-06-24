@@ -40,9 +40,14 @@ const CommentForm = ({ slug }) => {
     })
 
     const snedHandler = () => {
-        if (info.nameInfo && info.emailInfo && info.text) {
+
+        if (!Object.keys(errors).length) {
             sendComment()
             setPressed(true)
+            setInfo({
+                ...info,
+                check: true
+            })
         }
         else {
             setFocus({
@@ -70,12 +75,6 @@ const CommentForm = ({ slug }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if (!Object.keys(errors).length) {
-            setInfo({
-                ...info,
-                check: true
-            })
-        }
     }
 
 
@@ -202,7 +201,6 @@ const CommentForm = ({ slug }) => {
                 :
                 <button
                     onClick={snedHandler}
-                    type='submit'
                     className='bg-blue-700 text-white py-1 px-2 rounded-sm ml-8 text-lg  border-none outline-none'
                 >submit</button>
             }
