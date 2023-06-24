@@ -7,7 +7,6 @@ query{
       name
       id
     }
-
     author {
       name
       avatar {
@@ -60,6 +59,10 @@ const GET_AUTHOR_INFO=gql`
       id
       slug
       title
+      comments{
+        name
+        id
+      }
     }
   }
 }

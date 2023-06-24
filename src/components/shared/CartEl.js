@@ -7,7 +7,7 @@ import { FaCommentAlt } from "react-icons/fa";
 
 const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
 
-
+    console.log(comments);
 
 
     return (
@@ -38,7 +38,7 @@ const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
 
                 <div className='flex items-center justify-center'>
                     <FaCommentAlt className=' text-pink-600 mr-2' />
-                    <p className=''> : {comments.length}</p>
+                    <p className='text-lg'> : {comments ? comments.length :0 } </p>
                 </div>
             </div>
             <hr

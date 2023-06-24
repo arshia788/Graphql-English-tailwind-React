@@ -21,7 +21,6 @@ const App = () => {
     if(e === 'all'){
         setAllBlogs(GET)
         setCheck(true)
-        console.log('checking');
     }
     else{
         setAllBlogs(GET_AUTHOR_INFO)

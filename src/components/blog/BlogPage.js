@@ -66,6 +66,7 @@ const BlogPage = () => {
                         {data.post.author.field}
                     </p>
                 </div>
+                
             </div>
 
 
