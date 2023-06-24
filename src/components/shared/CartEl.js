@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 
-const CartEl = ({ title, slug, coverPhoto, author }) => {
+import { FaCommentAlt } from "react-icons/fa";
+
+
+const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
+
 
 
 
@@ -28,15 +32,22 @@ const CartEl = ({ title, slug, coverPhoto, author }) => {
             <img src={coverPhoto.url} alt={slug}
                 className='w-full h-40 mb-4'
             />
-            <h4 className='mb-4 ml-1 lg:text-xl font-semibold'>{title}</h4>
+            <div className='flex items-center justify-between px-2'>
 
+                <h4 className='ml-1 lg:text-xl font-semibold mr-4'>{title}</h4>
+
+                <div className='flex items-center justify-center'>
+                    <FaCommentAlt className=' text-pink-600 mr-2' />
+                    <p className=''> : {comments.length}</p>
+                </div>
+            </div>
             <hr
-                className='h-0.5 bg-gray-200 mb-2 w-11/12 m-auto'
+                className='h-0.5 my-3 bg-gray-200 mb-2 w-11/12 m-auto'
             />
             <div className='text-center mb-2'>
 
                 <Link to={`/blogs/${slug}`}
-                    
+
                     className=''>
 
                     <button

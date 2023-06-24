@@ -29,12 +29,12 @@ const BlogPage = () => {
             <div className='mt-8 w-10/12 m-auto 
             
             flex justify-between items-center'>
-                <h3
-                    className='text-3xl text-blue-700 font-semibold'
-                >{data.post.title}</h3>
                 <Link to='/'>
                     <FaArrowLeft />
                 </Link>
+                <h3
+                    className='text-3xl text-blue-700 font-semibold'
+                >{data.post.title}</h3>
             </div>
 
 
@@ -67,7 +67,8 @@ const BlogPage = () => {
 
 
             <div 
-            className='border-2 w-10/12 mx-auto '
+            className='shadow-md rounded.md
+            shadow-gray-400 w-10/12 mx-auto px-2 py-3 text-xl'
                 dangerouslySetInnerHTML={{ __html: data.post.content.html }}
             >
 

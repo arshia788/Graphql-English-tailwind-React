@@ -47,9 +47,11 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
             xs:p-0 sm:py-4 sm:px-2 box-border '>
                 {
                     itemA.map(item => {
+                        console.log(item);
                         return (
                             <div key={item.id} className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4'>
                                 <CartEl key={item.id} {...item} />
+
 
                             </div>
                         )

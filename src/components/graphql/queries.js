@@ -3,6 +3,11 @@ import {gql} from '@apollo/client'
 const GET=gql`
 query{
   posts {
+    comments {
+      name
+      id
+    }
+    
     author {
       name
       avatar {

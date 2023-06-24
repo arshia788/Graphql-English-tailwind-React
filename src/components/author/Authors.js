@@ -37,8 +37,8 @@ const Authors = ({ filterBlogs }) => {
                         <React.Fragment key={item.id}>
                             
                                 <button className='w-full border-none outline-none
-                                transition-all bg-white  duration-300 focus:bg-blue-600 focus:text-white
-                                mb-4 py-1.5 px-2 flex items-center
+                                transition-all bg-white duration-300 focus:bg-blue-600 focus:text-white
+                                mb-5 py-1.5 px-2 flex items-center
                                 '
                                 onClick={() => filterBlogs(item.slug)}
                                 >
