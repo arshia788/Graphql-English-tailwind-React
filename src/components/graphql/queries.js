@@ -7,7 +7,7 @@ query{
       name
       id
     }
-    
+
     author {
       name
       avatar {
@@ -88,4 +88,14 @@ query getPost ($slug:String!) {
 }
 `
 
-export {GET, GET_AUTHORS, GET_AUTHOR_INFO,GET_POST_INFO};
+const GET_POST_COMMENTS= gql`
+query getPostComment($slug:String!) {
+  comments(where: {post: {slug: $slug}}) {
+    name
+    id
+    text
+  }
+}
+`
+
+export {GET, GET_AUTHORS, GET_AUTHOR_INFO,GET_POST_INFO, GET_POST_COMMENTS};

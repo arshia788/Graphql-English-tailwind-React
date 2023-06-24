@@ -10,6 +10,10 @@ import { GET_POST_INFO } from '../graphql/queries';
 
 import Loader from '../shared/Loader';
 import { FaArrowLeft } from "react-icons/fa";
+import CommentForm from '../comments/CommentForm';
+import Comments from '../comments/Comments';
+
+
 const BlogPage = () => {
 
     const { slug } = useParams();
@@ -17,7 +21,6 @@ const BlogPage = () => {
     const { loading, data, errors } = useQuery(GET_POST_INFO, {
         variables: { slug }
     })
-    console.log(data);
 
     if (loading) return <h1><Loader /></h1>
 
@@ -73,6 +76,14 @@ const BlogPage = () => {
             >
 
 
+            </div>
+
+            <div className='mt-8 w-10/12 m-auto '>
+                <CommentForm slug={slug}/>
+            </div>
+
+            <div className='mt-8 w-10/12 m-auto '>
+                <Comments slug={slug}/>
             </div>
 
 
