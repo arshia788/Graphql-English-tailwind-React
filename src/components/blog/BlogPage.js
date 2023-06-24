@@ -69,8 +69,8 @@ const BlogPage = () => {
             </div>
 
 
-            <div 
-            className='shadow-md rounded.md
+            <div
+                className='shadow-md rounded.md
             shadow-gray-400 w-10/12 mx-auto px-2 py-3 text-xl'
                 dangerouslySetInnerHTML={{ __html: data.post.content.html }}
             >
@@ -79,11 +79,11 @@ const BlogPage = () => {
             </div>
 
             <div className='mt-8 w-10/12 m-auto '>
-                <CommentForm slug={slug}/>
+                <CommentForm slug={slug} />
             </div>
 
             <div className='mt-8 w-10/12 m-auto '>
-                <Comments slug={slug}/>
+                <Comments slug={slug} />
             </div>
 
 
