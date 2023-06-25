@@ -13,7 +13,6 @@ import { validate } from '../helper/validation';
 
 const CommentForm = ({ slug }) => {
 
-
     const [info, setInfo] = useState({
         nameInfo: '',
         emailInfo: '',
@@ -42,12 +41,19 @@ const CommentForm = ({ slug }) => {
     const snedHandler = () => {
 
         if (!Object.keys(errors).length) {
-            sendComment()
             setPressed(true)
+            sendComment()
             setInfo({
-                ...info,
+                nameInfo:'',
+                emailInfo:'',
+                text:'',
                 check: true
             })
+            // setFocus({
+            //     nameInfo: true,
+            //     emailInfo: true,
+            //     text: true,
+            // })
         }
         else {
             setFocus({
@@ -55,6 +61,7 @@ const CommentForm = ({ slug }) => {
                 emailInfo: true,
                 text: true,
             })
+            setPressed(true)
             toast.error("Fill All The Fields", {
                 position: "top-center",
             })
@@ -101,7 +108,7 @@ const CommentForm = ({ slug }) => {
                     className={`border-2 p-2 rounded-sm border-gray-500
                 outline-none focus:border-blue-700
                 placeholder:text-gray-600 placeholder:opacity-60
-                ${focus.nameInfo && errors.name ? 'border-red-700' : 'border-gray-500'}
+                ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
                 ${info.check && 'border-green-600'}
                 `}
 
@@ -114,7 +121,7 @@ const CommentForm = ({ slug }) => {
 
 
                 {
-                    focus.nameInfo && errors.name ?
+                    focus.nameInfo && errors.name && pressed ?
                         <BsFillPatchExclamationFill
                             className='absolute right-6 top-6 text-red-600 text-xl'
                         />
@@ -135,11 +142,11 @@ const CommentForm = ({ slug }) => {
                     className={`border-2 p-2 rounded-sm border-gray-500
                     outline-none focus:border-blue-700
                     placeholder:text-gray-600 placeholder:opacity-60 relative
-                    ${focus.emailInfo && errors.email ? 'border-red-700' : 'border-gray-500'}
+                    ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
                     ${info.check && 'border-green-600'}
                     `
                     }
-                    
+
                     placeholder='email'
                     value={info.emailInfo}
                     name='emailInfo'
@@ -149,7 +156,7 @@ const CommentForm = ({ slug }) => {
                 />
 
                 {
-                    focus.emailInfo && errors.email ?
+                    focus.emailInfo && errors.email &&pressed ?
                         <BsFillPatchExclamationFill
                             className='absolute right-6 top-6 text-red-600 text-xl'
                         />
@@ -169,7 +176,7 @@ const CommentForm = ({ slug }) => {
                     outline-none 
                     placeholder:text-gray-600 placeholder:opacity-60
                     focus:border-blue-700 relative
-                    ${focus.text && errors.text ? 'border-red-700' : 'border-gray-500'}
+                    ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
                     ${info.check && 'border-green-600'}
                     `}
                     placeholder='comment'
@@ -181,7 +188,7 @@ const CommentForm = ({ slug }) => {
                 />
 
                 {
-                    focus.text && errors.text ?
+                    focus.text && errors.text   ?
                         <BsFillPatchExclamationFill
                             className='absolute right-6 top-6 text-red-600 text-xl'
                         />
@@ -195,7 +202,7 @@ const CommentForm = ({ slug }) => {
             </div>
 
             {loading ? <button disabled
-                className=' bg-orange-300 text-white py-1 px-2 rounded-sm ml-8 text-lg border-none outline-none'
+                className=' bg-orange-400 text-white py-1 px-2 rounded-sm ml-8 text-lg border-none outline-none'
             >sending the data</button>
 
                 :

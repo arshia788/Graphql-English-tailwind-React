@@ -21,7 +21,7 @@ const Comments = ({ slug }) => {
             
             <p className='text-blue-700 text-xl font-bold'>Comments</p>
 
-            <div className='col-span-12 my-4 py-1 border rounded '>
+            <div className='col-span-12 my-4 py-1  rounded '>
                 {data.comments.map(item => {    
 
                     return (
