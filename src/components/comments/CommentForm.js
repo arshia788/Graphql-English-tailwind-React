@@ -17,7 +17,7 @@ const CommentForm = ({ slug }) => {
         nameInfo: '',
         emailInfo: '',
         text: '',
-        check: false
+        // check: false
     })
 
     const [errors, setErrors] = useState({});
@@ -38,30 +38,32 @@ const CommentForm = ({ slug }) => {
         variables: { name: info.nameInfo, email: info.emailInfo, text: info.text, slug }
     })
 
+
     const snedHandler = () => {
 
         if (!Object.keys(errors).length) {
-            setPressed(true)
             sendComment()
+            setPressed(true)
             setInfo({
                 nameInfo:'',
                 emailInfo:'',
                 text:'',
-                check: true
             })
-            // setFocus({
-            //     nameInfo: true,
-            //     emailInfo: true,
-            //     text: true,
-            // })
+            setFocus({
+                nameInfo: false,
+                emailInfo: false,
+                text: false,
+            })
+            
         }
+
         else {
             setFocus({
                 nameInfo: true,
                 emailInfo: true,
                 text: true,
             })
-            setPressed(true)
+            setPressed(false)
             toast.error("Fill All The Fields", {
                 position: "top-center",
             })
@@ -108,8 +110,8 @@ const CommentForm = ({ slug }) => {
                     className={`border-2 p-2 rounded-sm border-gray-500
                 outline-none focus:border-blue-700
                 placeholder:text-gray-600 placeholder:opacity-60
-                ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
-                ${info.check && 'border-green-600'}
+                ${focus.nameInfo && errors.name ? 'border-red-700' : 'border-gray-500'}
+                ${info.nameInfo && 'border-green-600'}
                 `}
 
                     placeholder='name'
@@ -121,15 +123,16 @@ const CommentForm = ({ slug }) => {
 
 
                 {
-                    focus.nameInfo && errors.name && pressed ?
-                        <BsFillPatchExclamationFill
-                            className='absolute right-6 top-6 text-red-600 text-xl'
-                        />
-                        :
-                        <FaCheckCircle
-                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+                    focus.nameInfo && errors.name &&
+                    <BsFillPatchExclamationFill
+                        className='absolute right-6 top-6 text-red-600 text-xl'
+                    />
+                }
+                {info.nameInfo &&
+                    <FaCheckCircle
+                        className={`${info.nameInfo ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
 
-                        />
+                    />
                 }
 
 
@@ -142,8 +145,8 @@ const CommentForm = ({ slug }) => {
                     className={`border-2 p-2 rounded-sm border-gray-500
                     outline-none focus:border-blue-700
                     placeholder:text-gray-600 placeholder:opacity-60 relative
-                    ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
-                    ${info.check && 'border-green-600'}
+                    ${focus.emailInfo && errors.email ? 'border-red-700' : 'border-gray-500'}
+                    ${info.emailInfo && 'border-green-600'}
                     `
                     }
 
@@ -156,15 +159,17 @@ const CommentForm = ({ slug }) => {
                 />
 
                 {
-                    focus.emailInfo && errors.email &&pressed ?
-                        <BsFillPatchExclamationFill
-                            className='absolute right-6 top-6 text-red-600 text-xl'
-                        />
-                        :
-                        <FaCheckCircle
-                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+                    focus.emailInfo && errors.email &&
+                    <BsFillPatchExclamationFill
+                        className='absolute right-6 top-6 text-red-600 text-xl'
+                    />
+                }
+                
+                {info.emailInfo && !errors.email &&
+                    <FaCheckCircle
+                        className={`${info.nameInfo ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
 
-                        />
+                    />
                 }
 
             </div>
@@ -176,8 +181,8 @@ const CommentForm = ({ slug }) => {
                     outline-none 
                     placeholder:text-gray-600 placeholder:opacity-60
                     focus:border-blue-700 relative
-                    ${focus.nameInfo && errors.name && pressed  ? 'border-red-700' : 'border-gray-500'}
-                    ${info.check && 'border-green-600'}
+                    ${focus.text && errors.text ? 'border-red-700' : 'border-gray-500'}
+                    ${info.text && 'border-green-600'}
                     `}
                     placeholder='comment'
                     value={info.text}
@@ -188,15 +193,16 @@ const CommentForm = ({ slug }) => {
                 />
 
                 {
-                    focus.text && errors.text   ?
-                        <BsFillPatchExclamationFill
-                            className='absolute right-6 top-6 text-red-600 text-xl'
-                        />
-                        :
-                        <FaCheckCircle
-                            className={`${info.check ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
+                    focus.text && errors.text &&
+                    <BsFillPatchExclamationFill
+                        className='absolute right-6 top-6 text-red-600 text-xl'
+                    />
+                }
+                {info.text &&
+                    <FaCheckCircle
+                        className={`${info.nameInfo ? 'absolute' : 'hidden'}  right-6 top-6 text-green-600 text-xl`}
 
-                        />
+                    />
                 }
 
             </div>

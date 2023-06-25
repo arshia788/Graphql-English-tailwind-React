@@ -5,7 +5,6 @@ import { GET_AUTHORS } from '../graphql/queries';
 
 import CartEl from '../shared/CartEl'
 
-import sanatizeHtml from 'sanitize-html';
 import Loader from '../shared/Loader';
 
 const AuthorPage = () => {
@@ -26,7 +25,8 @@ const AuthorPage = () => {
                     return (
                         <div key={item.id}
                             className='col 
-                            xs:col-span-12 md:col-span-6 lg:col-span-3
+                            
+                            xs:col-span-12 md:col-span-6 lg:col-span-4
                             xs:mb-8
                             md:mb-4 md:mx-4
                             py-2
