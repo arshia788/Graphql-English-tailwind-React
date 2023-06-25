@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import Layout from '../layout'
 import Blogs from '../blog/Blogs';
 import Authors from '../author/Authors';
+import { useQuery } from '@apollo/client';
 
 
 const HomePage = ({ allBlogs, check, slugItem, filterBlogs }) => {
 
-
+    
     return (
         <div className='grid grid-cols-12 p-20'>
 

@@ -9,12 +9,12 @@ import Loader from '../shared/Loader';
 const Blogs = ({ allBlogs, check,slugItem  }) => {
 
     const { loading, data, errors } = useQuery(allBlogs, {
-        variables:{slug:slugItem}
+        variables:{slug:slugItem.slug}
     })
 
-
+    // ? this is for filter
     if (!check) {
-        const itemC = data && data.author.posts.filter(item => item.title !== 'best-laptop')
+        const itemC = data && data.author.posts.filter(item => item.slug !== 'best-laptop')
         if (loading) return <h1><Loader /></h1>
         if (errors) return <h3>Ooops...</h3>
 
@@ -24,7 +24,8 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
                 {
                     itemC.map(item => {
                         return (
-                            <div key={item.id} className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4'>
+                            <div key={item.id} className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4
+                            '>
                                 <CartEl key={item.id} {...item} />
 
                             </div>
@@ -38,7 +39,6 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
     if(check){
         const itemA = data && data.posts.filter(item => item.title !== 'best-laptop')
 
-        console.log(itemA);
         if (loading) return <h1><Loader /></h1>
         if (errors) return <h3>Ooops...</h3>
 
@@ -47,7 +47,6 @@ const Blogs = ({ allBlogs, check,slugItem  }) => {
             xs:p-0 sm:py-4 sm:px-2 box-border '>
                 {
                     itemA.map(item => {
-                        console.log(item);
                         return (
                             <div key={item.id} className='xs:col-span-12 md:col-span-6 m-1 lg:col-span-4'>
                                 <CartEl key={item.id} {...item} />

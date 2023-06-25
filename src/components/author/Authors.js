@@ -40,7 +40,7 @@ const Authors = ({ filterBlogs }) => {
                                 transition-all bg-white duration-300 focus:bg-blue-600 focus:text-white
                                 mb-5 py-1.5 px-2 flex items-center
                                 '
-                                onClick={() => filterBlogs(item.slug)}
+                                onClick={() => filterBlogs(item)}
                                 >
                                     <img
                                         src={item.avatar.url}

@@ -7,10 +7,11 @@ import { FaCommentAlt } from "react-icons/fa";
 
 const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
 
-
+    // console.log(author.avatar.avatarAuthor.map(item => console.log(item.name)));
 
     return (
         <div className='
+        max-h-auto
         shadow-md
         shadow-gray-400
         rounded-md mb-12 overflow-hidden
@@ -24,20 +25,27 @@ const CartEl = ({ title, slug, coverPhoto, author, comments }) => {
                         src={author.avatar.url}
                     />
                     <h5>{author.name}</h5>
+                    {
+                        author.avatar.avatarAuthor && author.avatar.avatarAuthor.map((item, index)=> <p key={index}>{item.name}</p>)
+                    }
+
                 </div>
             }
+            
+
 
 
             <img src={coverPhoto.url} alt={slug}
                 className='w-full h-40 mb-4'
             />
+
             <div className='flex items-center justify-between px-2'>
 
                 <h4 className='ml-1 lg:text-xl font-semibold mr-4'>{title}</h4>
 
                 <div className='flex items-center justify-center'>
                     <FaCommentAlt className=' text-pink-600 mr-2' />
-                    <p className='text-lg'> : {comments ? comments.length :0 } </p>
+                    <p className='text-lg'> : {comments ? comments.length : 0} </p>
                 </div>
             </div>
             <hr

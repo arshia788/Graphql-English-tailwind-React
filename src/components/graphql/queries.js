@@ -1,6 +1,6 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
-const GET=gql`
+const GET = gql`
 query{
   posts {
     comments {
@@ -24,7 +24,7 @@ query{
 `
 
 
-const GET_AUTHORS= gql`
+const GET_AUTHORS = gql`
  query {
   authors {
     name
@@ -41,18 +41,18 @@ const GET_AUTHORS= gql`
 }
 `
 
-const GET_AUTHOR_INFO=gql`
+const GET_AUTHOR_INFO = gql`
  query getAuthorInfo($slug:String!) {
   author(where: {slug: $slug}) {
-    avatar {
-      url
-    }
+    
+
     field
     name
     description {
       html
     }
     posts {
+      
       coverPhoto {
         url
       }
@@ -63,12 +63,20 @@ const GET_AUTHOR_INFO=gql`
         name
         id
       }
+      author {
+        avatar {
+          url
+          avatarAuthor {
+            name
+          }
+        }
+      }
     }
   }
 }
 `
 
-const GET_POST_INFO= gql`
+const GET_POST_INFO = gql`
 query getPost ($slug:String!) {
   post(where: {slug: $slug}) {
     author {
@@ -91,7 +99,7 @@ query getPost ($slug:String!) {
 }
 `
 
-const GET_POST_COMMENTS= gql`
+const GET_POST_COMMENTS = gql`
 query getPostComment($slug:String!) {
   comments(where: {post: {slug: $slug}}) {
     name
@@ -101,4 +109,4 @@ query getPostComment($slug:String!) {
 }
 `
 
-export {GET, GET_AUTHORS, GET_AUTHOR_INFO,GET_POST_INFO, GET_POST_COMMENTS};
+export { GET, GET_AUTHORS, GET_AUTHOR_INFO, GET_POST_INFO, GET_POST_COMMENTS };
