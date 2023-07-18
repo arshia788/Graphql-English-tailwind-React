@@ -25,7 +25,6 @@ const AuthorPage = () => {
                     return (
                         <div key={item.id}
                             className='col 
-                            
                             xs:col-span-12 md:col-span-6 lg:col-span-4
                             xs:mb-8
                             md:mb-4 md:mx-4
@@ -37,7 +36,6 @@ const AuthorPage = () => {
                             hover:bg-pink-600
                             hover:!text-gray-50
                             transition-all duration-100
-                            cursor-pointer
                             rounded-md
                             '
                         >

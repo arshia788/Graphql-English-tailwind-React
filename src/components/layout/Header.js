@@ -18,7 +18,6 @@ const Header = ({ filterBlogs }) => {
             </div>
 
             <ul className='flex '>
-                <Link><li className='mx-2 text-xl'>Blogs</li></Link>
                 <Link to='/authors'><li className='mx-2 text-xl'>Authors</li></Link>
             </ul>
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Route, Routes } from 'react-router-dom'
 
-import { GET, GET_AUTHOR_INFO, GET_POST_INFO } from './components/graphql/queries';
+import { GET, GET_AUTHOR_INFO} from './components/graphql/queries';
 
 import HomePage from './components/home/HomePage';
 import Layout from './components/layout'
@@ -16,7 +16,6 @@ const App = () => {
   const [slugItem, setSlugItem] = useState('');
 
   const filterBlogs=(e)=>{
-
     
     if(e === 'all'){
         setAllBlogs(GET)

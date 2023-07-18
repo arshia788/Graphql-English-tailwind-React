@@ -13,4 +13,3 @@ mutation getComment ( $name:String!, $email:String!, $text:String!, $slug:String
 export {SEND_COMMENT};
 
 
-
